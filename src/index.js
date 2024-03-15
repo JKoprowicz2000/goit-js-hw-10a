@@ -14,7 +14,7 @@ const clearMarkup = ref => (ref.innerHTML = '');
 
 const inputHandler = e => {
     const textInput = e.target.value.trim();
-}
+
 
 if(!textInput) {
     clearMarkup(refs.countryList);
@@ -27,9 +27,17 @@ fetchCountries(textInput)
     if (data.length > 10) {
         Notify.info(
             'Too many matches found. Please eneter a more specific name'
-        )
+        );
+        return;
     }
+    renderMarkup(data);
+})
+.catch(err => {
+    clearMarkup(refs.countryList);
+    clearMarkup(refs.countryInfo);
+    Notify.failure('Oops..., there is no country with that name');
 });
+};
 const renderMarkup = data => {
     if (data.length === 1) {
         clearMarkup(refs.countryList);
