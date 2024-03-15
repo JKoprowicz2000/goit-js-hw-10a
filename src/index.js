@@ -10,7 +10,6 @@ const refs = {
     countryList : document.querySelector('.country-list'),
 };
 
-const clearMarkup = ref => (ref.innerHTML = '');
 
 const inputHandler = e => {
     const textInput = e.target.value.trim();
@@ -38,6 +37,13 @@ fetchCountries(textInput)
     Notify.failure('Oops..., there is no country with that name');
 });
 };
+const clearMarkup = ref => {
+    // Dodaje warunek
+    if (ref) {
+        ref.innerHTML = '';
+    }
+};
+
 const renderMarkup = data => {
     if (data.length === 1) {
         clearMarkup(refs.countryList);
