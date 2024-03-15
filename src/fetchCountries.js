@@ -9,4 +9,5 @@ return fetch (`${BASE_URL}${name}?${properties}`).then(response => {
     }
     return response.json();
 })
-}
+
+};
